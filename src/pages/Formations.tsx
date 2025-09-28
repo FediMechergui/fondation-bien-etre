@@ -4,28 +4,36 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle, Download, Play, Users, Home } from "lucide-react";
+import shiatsuImage from "@/assets/shiatsu-massage.jpg";
+import kinesiologyImage from "@/assets/kinesiology-session.jpg";
+import cuppingImage from "@/assets/cupping-massage.jpg";
+import nutritionImage from "@/assets/nutrition-consultation.jpg";
 
 const Formations = () => {
   const formations = [
     {
       title: "Shiatsu",
       description: "Formation complète en techniques de massage Shiatsu traditionnel japonais.",
-      benefits: ["Techniques de pression", "Méridiens énergétiques", "Pratique théorique et pratique"]
+      benefits: ["Techniques de pression", "Méridiens énergétiques", "Pratique théorique et pratique"],
+      image: shiatsuImage
     },
     {
       title: "Kinésiologie",
       description: "La Kinésiologie est une approche corporelle qui vise à retrouver un meilleur équilibre mental, physique et énergétique. À l'aide d'un Test Musculaire, le Kinésiologue teste les flux d'énergie du corps.",
-      benefits: ["Test musculaire", "Rééquilibrage énergétique", "Gestion du stress et des émotions"]
+      benefits: ["Test musculaire", "Rééquilibrage énergétique", "Gestion du stress et des émotions"],
+      image: kinesiologyImage
     },
     {
       title: "Massage par Ventouse",
       description: "Le système de massage est facile d'utilisation. Cette technique permet de nettoyer et réguler notre organisme. Le principe est plutôt simple: éliminer les toxines et le stress.",
-      benefits: ["Drainage lymphatique", "Massage lifting du visage", "Élimination des toxines"]
+      benefits: ["Drainage lymphatique", "Massage lifting du visage", "Élimination des toxines"],
+      image: cuppingImage
     },
     {
       title: "Nutrition",
       description: "La Nutrition est l'ensemble des actions et processus par lesquels un être vivant récupère et transforme des substances pour assurer son fonctionnement. Elle a pour objectif que l'individu parvienne à nourrir le mieux possible son corps, son cœur et sa tête.",
-      benefits: ["Équilibre alimentaire", "Bien-être physique", "Équilibre psycho-émotionnel"]
+      benefits: ["Équilibre alimentaire", "Bien-être physique", "Équilibre psycho-émotionnel"],
+      image: nutritionImage
     }
   ];
 
@@ -103,6 +111,7 @@ const Formations = () => {
                 title={formation.title}
                 description={formation.description}
                 benefits={formation.benefits}
+                image={formation.image}
               />
             ))}
           </div>
