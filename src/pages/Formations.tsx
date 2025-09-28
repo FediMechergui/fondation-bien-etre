@@ -8,6 +8,8 @@ import shiatsuImage from "@/assets/shiatsu-massage.jpg";
 import kinesiologyImage from "@/assets/kinesiology-session.jpg";
 import cuppingImage from "@/assets/cupping-massage.jpg";
 import nutritionImage from "@/assets/nutrition-consultation.jpg";
+import liftingMassageImg from "@/assets/lifting-massage.jpg";
+import hotStoneMassageImg from "@/assets/hot-stone-massage.jpg";
 
 const Formations = () => {
   const formations = [
@@ -126,7 +128,14 @@ const Formations = () => {
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-gradient-card shadow-soft">
+            <Card className="bg-gradient-card shadow-soft hover:shadow-glow transition-all duration-300">
+              <div className="aspect-video overflow-hidden rounded-t-lg">
+                <img 
+                  src={liftingMassageImg} 
+                  alt="Massage Lifting"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </div>
               <CardHeader>
                 <CardTitle className="text-wellness-sage">Massage Lifting</CardTitle>
               </CardHeader>
@@ -142,7 +151,14 @@ const Formations = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card shadow-soft">
+            <Card className="bg-gradient-card shadow-soft hover:shadow-glow transition-all duration-300">
+              <div className="aspect-video overflow-hidden rounded-t-lg">
+                <img 
+                  src={hotStoneMassageImg} 
+                  alt="Massage Pression Chaude"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </div>
               <CardHeader>
                 <CardTitle className="text-wellness-sage">Massage Pression Chaude</CardTitle>
               </CardHeader>

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import wellnessBalanceImg from "@/assets/wellness-balance.jpg";
 import massageImg from "@/assets/massage-therapy.jpg";
 import tcmImg from "@/assets/tcm-setup.jpg";
+import zenWellnessImg from "@/assets/zen-wellness.jpg";
 
 const Home = () => {
   return (
@@ -35,6 +36,29 @@ const Home = () => {
               les pratiques bien-être, de prévention, maintien et retour à la santé, ainsi que les approches visant 
               l'épanouissement de l'individu.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Zen Wellness Section */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="relative rounded-2xl overflow-hidden shadow-elegant">
+            <div 
+              className="h-96 bg-cover bg-center bg-no-repeat flex items-center justify-center"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${zenWellnessImg})`,
+              }}
+            >
+              <div className="text-center text-white max-w-2xl mx-auto px-4">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  Trouvez Votre Équilibre Intérieur
+                </h2>
+                <p className="text-lg opacity-90">
+                  Un voyage vers la sérénité et le bien-être authentique vous attend
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
