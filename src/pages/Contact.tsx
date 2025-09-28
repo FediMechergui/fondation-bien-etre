@@ -4,13 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import EmbeddedMap from "@/components/EmbeddedMap";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,13 +21,79 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message envoyé !",
-      description: "Nous vous répondrons dans les plus brefs délais.",
-    });
-    setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      // Validate environment variables
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error(
+          "Configuration EmailJS manquante. Vérifiez vos variables d'environnement."
+        );
+      }
+
+      // Prepare template parameters
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject || "Nouveau message depuis le site web",
+        message: formData.message,
+        to_name: "Fondation Bien Être",
+        reply_to: formData.email,
+        // Current date and time
+        date: new Date().toLocaleDateString("fr-FR", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+      };
+
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
+
+      if (result.status === 200) {
+        toast({
+          title: "Message envoyé avec succès ! ✨",
+          description:
+            "Nous vous répondrons dans les plus brefs délais. Merci pour votre confiance.",
+        });
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        throw new Error("Erreur lors de l'envoi");
+      }
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      toast({
+        title: "Erreur d'envoi ❌",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Une erreur s'est produite. Veuillez réessayer ou nous contacter directement.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -214,9 +282,17 @@ const Contact = () => {
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full bg-wellness-sage hover:bg-wellness-sage/90 text-white"
+                      disabled={isSubmitting}
+                      className="w-full bg-wellness-sage hover:bg-wellness-sage/90 text-white disabled:opacity-50"
                     >
-                      Envoyer le Message
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Envoi en cours...
+                        </>
+                      ) : (
+                        "Envoyer le Message"
+                      )}
                     </Button>
                   </form>
                 </CardContent>

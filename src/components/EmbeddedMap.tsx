@@ -26,10 +26,13 @@ const EmbeddedMap: React.FC<EmbeddedMapProps> = ({
       <CardHeader>
         <div className="flex items-center space-x-2">
           <MapPin className="w-6 h-6 text-wellness-sage" />
-          <CardTitle className="text-wellness-sage">Notre Localisation</CardTitle>
+          <CardTitle className="text-wellness-sage">
+            Notre Localisation
+          </CardTitle>
         </div>
         <CardDescription>
-          Région de Lille, France - Nous intervenons dans toute la métropole lilloise
+          Région de Lille, France - Nous intervenons dans toute la métropole
+          lilloise
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -42,37 +45,30 @@ const EmbeddedMap: React.FC<EmbeddedMapProps> = ({
             title="Notre localisation à Lille sur OpenStreetMap"
           />
         </div>
-        <div className="mt-4 flex gap-2 flex-wrap">
-          <Button 
-            variant="outline"
-            size="sm"
-            onClick={() => window.open(googleMapsUrl, '_blank')}
-            className="text-wellness-sage border-wellness-sage hover:bg-wellness-sage hover:text-white"
-          >
-            <ExternalLink className="w-4 h-4 mr-2" />
-            Google Maps
-          </Button>
-          <Button 
-            variant="outline"
-            size="sm"
-            onClick={() => window.open(openStreetMapUrl, '_blank')}
-            className="text-wellness-sage border-wellness-sage hover:bg-wellness-sage hover:text-white"
-          >
-            <ExternalLink className="w-4 h-4 mr-2" />
-            OpenStreetMap
-          </Button>
-        </div>
         <div className="mt-4 p-4 bg-muted rounded-lg">
-          <h4 className="font-semibold text-wellness-sage mb-2">Zone d'Intervention</h4>
+          <h4 className="font-semibold text-wellness-sage mb-2">
+            Zone d'Intervention
+          </h4>
           <p className="text-sm text-muted-foreground">
-            Nous intervenons dans toute la métropole lilloise et les communes environnantes. 
-            N'hésitez pas à nous contacter pour vérifier la possibilité d'intervention dans votre secteur.
+            Nous intervenons dans toute la métropole lilloise et les communes
+            environnantes. N'hésitez pas à nous contacter pour vérifier la
+            possibilité d'intervention dans votre secteur.
           </p>
           <div className="mt-3 text-sm space-y-1">
-            <p><strong>Région :</strong> Nord-Pas-de-Calais, France</p>
-            <p><strong>Zone de couverture :</strong> Métropole Européenne de Lille</p>
-            <p><strong>Communes principales :</strong> Lille, Roubaix, Tourcoing, Villeneuve-d'Ascq, Marcq-en-Barœul</p>
-            <p><strong>Coordonnées :</strong> 50.6292°N, 3.0573°E</p>
+            <p>
+              <strong>Région :</strong> Nord-Pas-de-Calais, France
+            </p>
+            <p>
+              <strong>Zone de couverture :</strong> Métropole Européenne de
+              Lille
+            </p>
+            <p>
+              <strong>Communes principales :</strong> Lille, Roubaix, Tourcoing,
+              Villeneuve-d'Ascq, Marcq-en-Barœul
+            </p>
+            <p>
+              <strong>Coordonnées :</strong> 50.6292°N, 3.0573°E
+            </p>
           </div>
         </div>
       </CardContent>
